@@ -76,6 +76,7 @@
    $(function () {
       $("button").click(function () {
         $.get("/DevJSON", function (data) {
+        var obj = jQuery.parseJSON(data);
         data_length = data.length
 
         $("#result").append('<div id="container" class="container">'); // Open container
