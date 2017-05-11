@@ -41,42 +41,13 @@
   </div>
 </nav>
 
-<!--
-<div class="container">
-<div class="row">
-    <div class="info-card">
-        <div class="front">
-          <img class="card-image" src="Heating.ico">
-        </div>
-      <div class="back">
-        <h2>Heating</h2>
-        <input type="range" min="0" max="100" step="1" value="50"> 
-
-        </div>
-      </div>
--->
-<!--
-<button>Load</button>
-<div id="result"></div>
-<script>
-   $(function () {
-      $("button").click(function () {
-         $.get("/DevJSON", function (data) {
-            $("#result").html(data);
-            alert("Запрос выполнен");
-         });
-      });
-   });
-</script>
--->
-
 <button>Load</button>
 <div id="result"></div>
 <script>
    $(function () {
       $("button").click(function () {
         $.get("/DevJSON", function (data) {
-        var obj = jQuery.parseJSON(data);
+        var obj = JSON.parse(data);
         data_length = obj.length
 
         $("#result").append('<div id="container" class="container">'); // Open container
@@ -94,7 +65,10 @@
 
         $("#"+info_card).append('<div id="'+ back + '"class="back">'); // Open back
         $("#"+back).append('<p>' + 'Fridge' + '</p>'); // Paragraph
-        $('#'+back).append('</div'); // Close front
+  $("#"+back).append('<p> Location: ' + obj[data_length - 1]["Location"] + '</p>');
+  $("#"+back).append('<p> Name: ' + obj[data_length - 1]["Name"] + '</p>');
+  $("#"+back).append('<p> Type: ' + obj[data_length - 1]["Type"] + '</p>');
+  $("#"+back).append('<p> Functions: ' + obj[data_length - 1]["Functions"] + '</p>');
         $('#'+info_card).append('</div'); // Close front
         data_length --;
         }
@@ -105,4 +79,3 @@
 
 </body>
 </html>
-
