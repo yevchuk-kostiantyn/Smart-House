@@ -55,18 +55,34 @@
         </div>
       </div>
 
-
 <button>Load</button>
 <div id="result"></div>
 <script>
    $(function () {
       $("button").click(function () {
-         $("#result").append('div class=')
+         $.get("/DevJSON", function (data) {
+            $("#result").html(data);
+            alert("Запрос выполнен");
+         });
       });
    });
 </script>
 
+<!--
+<button>Load</button>
+<div id="result"></div>
+<script>
+   $(function () {
+      $("button").click(function () {
+         $("#result").append('<div class="container">');
+         $("#result").append('<div class="row">');
+         $("#result").append('<div id="front" class="front">');
+         $('#front').append('<img class="card-image" src="home.png" />')
+
+      });
+   });
+</script>
+-->
 </body>
 </html>
-
 
