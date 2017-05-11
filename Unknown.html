@@ -77,15 +77,15 @@
       $("button").click(function () {
         $.get("/DevJSON", function (data) {
         var obj = jQuery.parseJSON(data);
-        data_length = data.length
+        data_length = obj.length
 
         $("#result").append('<div id="container" class="container">'); // Open container
         $("#container").append('<div id="row" class="row">'); // Open raw
         
         while (data_length > 0) {
-        var info_card = "info-card" + n
-        var front = "front" + n
-        var back = "back" + n
+        var info_card = "info-card" + data_length
+        var front = "front" + data_length
+        var back = "back" + data_length
 
         $("#row").append('<div id="' + info_card + '" class="info-card">'); // Open info-card
         $("#"+info_card).append('<div id="' + front + '"class="front">'); // Open front
@@ -98,9 +98,7 @@
         $('#'+info_card).append('</div'); // Close front
         data_length --;
         }
-
-
-
+      });
       });
    });
 </script>
