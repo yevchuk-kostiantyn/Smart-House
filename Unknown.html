@@ -41,7 +41,7 @@
   </div>
 </nav>
 
-
+<!--
 <div class="container">
 <div class="row">
     <div class="info-card">
@@ -54,7 +54,8 @@
 
         </div>
       </div>
-
+-->
+<!--
 <button>Load</button>
 <div id="result"></div>
 <script>
@@ -67,22 +68,42 @@
       });
    });
 </script>
+-->
 
-<!--
 <button>Load</button>
 <div id="result"></div>
 <script>
    $(function () {
       $("button").click(function () {
-         $("#result").append('<div class="container">');
-         $("#result").append('<div class="row">');
-         $("#result").append('<div id="front" class="front">');
-         $('#front').append('<img class="card-image" src="home.png" />')
+        $.get("/DevJSON", function (data) {
+        data_length = data.length
+
+        $("#result").append('<div id="container" class="container">'); // Open container
+        $("#container").append('<div id="row" class="row">'); // Open raw
+        
+        while (data_length > 0) {
+        var info_card = "info-card" + n
+        var front = "front" + n
+        var back = "back" + n
+
+        $("#row").append('<div id="' + info_card + '" class="info-card">'); // Open info-card
+        $("#"+info_card).append('<div id="' + front + '"class="front">'); // Open front
+        $('#'+front).append('<img class="card-image" src="Fridge.ico" />'); // Image Front
+        $('#'+front).append('</div'); // Close front
+
+        $("#"+info_card).append('<div id="'+ back + '"class="back">'); // Open back
+        $("#"+back).append('<p>' + 'Fridge' + '</p>'); // Paragraph
+        $('#'+back).append('</div'); // Close front
+        $('#'+info_card).append('</div'); // Close front
+        data_length --;
+        }
+
+
 
       });
    });
 </script>
--->
+
 </body>
 </html>
 
