@@ -45,34 +45,44 @@
   <div id="result"></div>
   <script>
    $(document).ready(function(){
-      $.get("/DevJSON", function (data) {
-        var obj = JSON.parse(data);
-        data_length = obj.length
+    $.get("/DevJSON", function (data) {
+      var obj = JSON.parse(data);
+      data_length = obj.length;
 
         $("#result").append('<div id="container" class="container">'); // Open container
         $("#container").append('<div id="row" class="row">'); // Open raw
         
         while (data_length > 0) {
-          var info_card = "info-card" + data_length
-          var front = "front" + data_length
-          var back = "back" + data_length
+          var info_card = "info-card" + data_length;
+          var front = "front" + data_length;
+          var back = "back" + data_length;
 
-        $("#row").append('<div id="' + info_card + '" class="info-card">'); // Open info-card
-        $("#"+info_card).append('<div id="' + front + '"class="front">'); // Open front
-        $('#'+front).append('<img class="card-image" src="Fridge.ico" />'); // Image Front
-        $('#'+front).append('</div'); // Close front
+          // Front Side
+          $("#row").append('<div id="' + info_card + '" class="info-card">'); // Open info-card
+          $("#"+info_card).append('<div id="' + front + '"class="front">'); // Open front
+          $('#'+front).append('<img class="card-image" src="Fridge.ico" />'); // Image Front
+          $('#'+front).append('</div'); // Close front
 
-        $("#"+info_card).append('<div id="'+ back + '"class="back">'); // Open back
-        $("#"+back).append('<p>' + 'Fridge' + '</p>'); // Paragraph
-        $("#"+back).append('<p> Location: ' + obj[data_length - 1]["Location"] + '</p>');
-        $("#"+back).append('<p> Name: ' + obj[data_length - 1]["Name"] + '</p>');
-        $("#"+back).append('<p> Type: ' + obj[data_length - 1]["Type"] + '</p>');
-        $("#"+back).append('<p> Functions: ' + obj[data_length - 1]["Functions"] + '</p>');
-        $('#'+info_card).append('</div'); // Close front
-        data_length --;
-      }
-    });
-    });
+          // Back side
+          $("#"+info_card).append('<div id="'+ back + '"class="back">'); // Open back
+          $("#"+back).append('<p>' + 'Fridge' + '</p>'); // Paragraph
+
+          // Button
+          $("#"+back).append('<label id="' + button_switch + '" class="switch">');
+          $("#"+button_switch).append('<input type="checkbox">');
+          $("#"+button_switch).append('<div class="slider round"></div>');
+          $("#"+back).append('</label>');
+
+          // Device Info
+          $("#"+back).append('<p> Location: ' + obj[data_length - 1]["Location"] + '</p>');
+          $("#"+back).append('<p> Name: ' + obj[data_length - 1]["Name"] + '</p>');
+          $("#"+back).append('<p> Type: ' + obj[data_length - 1]["Type"] + '</p>');
+          $("#"+back).append('<p> Functions: ' + obj[data_length - 1]["Functions"] + '</p>');
+          $('#'+info_card).append('</div'); // Close front
+          data_length --;
+        }
+      });
+  });
 </script>
 </body>
 </html>
