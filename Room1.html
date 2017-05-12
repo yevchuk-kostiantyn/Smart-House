@@ -43,39 +43,5 @@
     </div><!-- /.container-fluid -->
   </nav>
 
-<div id='result'></div>
-
-<script>
-  $(document).ready(function(){
-    $("#result").append('<div id="container" class="container">'); // Open container
-    $("#container").append('<div id="row" class="row">'); // Open raw
-
-    var n = 3;
-        
-        while (n > 0) {
-          var info_card = "info-card" + n;
-          var front = "front" + n;
-          var back = "back" + n;
-          var button_switch = "switch" + n;
-
-          $("#row").append('<div id="' + info_card + '" class="info-card">'); // Open info-car
-          $("#"+info_card).append('<div id="' + front + '"class="front">'); // Open front
-          $('#'+front).append('<img class="card-image" src="Fridge.ico" />'); // Image Front
-          $('#'+front).append('</div'); // Close front
-
-          $("#"+info_card).append('<div id="'+ back + '"class="back">'); // Open back
-          $("#"+back).append('<p>' + 'Fridge' + '</p>'); // Paragraph
-          $("#"+back).append('<label id="' + button_switch + '" class="switch">');
-          $("#"+button_switch).append('<input type="checkbox">');
-          $("#"+button_switch).append('<div class="slider round"></div>');
-          $("#"+back).append('</label>');
-
-          $('#'+info_card).append('</div'); // Close front
-          n --;
-};
-});
-
-</script>
-
 </body>
 </html>
